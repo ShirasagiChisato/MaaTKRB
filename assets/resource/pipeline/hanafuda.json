@@ -1,0 +1,167 @@
+{
+    "HanafudaStart": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "benwan.png",
+                "roi": [
+                    0,
+                    0,
+                    90,
+                    110
+                ]
+            }
+        }
+    },
+    "TESTChooseHanafudaInit": {
+        "recognition": "DirectHit",
+        "next": [
+            "ChooseHanafudaA",
+            "ChooseHanafudaB",
+            "ChooseHanafudaC",
+            "ChooseHanafudaD",
+            "ChooseHanafudaE",
+            "ChooseHanafudaK"
+        ]
+    },
+    "ChooseHanafudaA": {
+        "recognition": {
+            "type": "FeatureMatch",
+            "param": {
+                "template": "Hanafuda/A/",
+                "roi": [
+                    250,
+                    171,
+                    775,
+                    160
+                ],
+                "count": 10
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "ConfirmHanafuda"
+        ]
+    },
+    "ChooseHanafudaB": {
+        "recognition": {
+            "type": "FeatureMatch",
+            "param": {
+                "template": "Hanafuda/B/",
+                "roi": [
+                    250,
+                    171,
+                    775,
+                    160
+                ],
+                "count": 10
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "ConfirmHanafuda"
+        ]
+    },
+    "ChooseHanafudaC": {
+        "recognition": {
+            "type": "FeatureMatch",
+            "param": {
+                "template": "Hanafuda/C/",
+                "roi": [
+                    250,
+                    171,
+                    775,
+                    160
+                ],
+                "count": 10
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "ConfirmHanafuda"
+        ]
+    },
+    "ChooseHanafudaD": {
+        "recognition": {
+            "type": "FeatureMatch",
+            "param": {
+                "template": "Hanafuda/D/",
+                "roi": [
+                    250,
+                    171,
+                    775,
+                    160
+                ],
+                "count": 10
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "ConfirmHanafuda"
+        ]
+    },
+    "ChooseHanafudaE": {
+        "recognition": {
+            "type": "FeatureMatch",
+            "param": {
+                "template": "Hanafuda/E/",
+                "roi": [
+                    250,
+                    171,
+                    775,
+                    160
+                ],
+                "count": 10
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "ConfirmHanafuda"
+        ]
+    },
+    "ChooseHanafudaK": {
+        "recognition": {
+            "type": "FeatureMatch",
+            "param": {
+                "template": "Hanafuda/K/",
+                "roi": [
+                    250,
+                    171,
+                    775,
+                    160
+                ],
+                "count": 10
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "ConfirmHanafuda"
+        ]
+    },
+    "ConfirmHanafuda": {
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
+        "roi": [
+            250,
+            171,
+            775,
+            160
+        ],
+        "action": "Click"
+    },
+    "OcrTask": {}
+}

@@ -1,0 +1,6 @@
+{
+    "FeatureMatch": {
+        "recognition": "FeatureMatch",
+        "detector": "AKAZE"
+    }
+}
