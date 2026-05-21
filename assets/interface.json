@@ -65,7 +65,7 @@
         },
         {
             "name": "选择花札",
-            "entry": "TESTChooseHanafudaInit"
+            "entry": "ChooseHanafudaInit"
         }
     ],
     "option": {

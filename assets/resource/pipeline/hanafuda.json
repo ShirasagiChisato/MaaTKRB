@@ -13,7 +13,7 @@
             }
         }
     },
-    "TESTChooseHanafudaInit": {
+    "ChooseHanafudaInit": {
         "recognition": "DirectHit",
         "next": [
             "ChooseHanafudaA",
@@ -21,7 +21,13 @@
             "ChooseHanafudaC",
             "ChooseHanafudaD",
             "ChooseHanafudaE",
-            "ChooseHanafudaK"
+            "ChooseHanafudaK",
+            "AgariKoikoi"
+        ],
+        "post_wait_freezes": 1000,
+        "timeout": 10000,
+        "on_error": [
+            "BattleEnd"
         ]
     },
     "ChooseHanafudaA": {
@@ -30,12 +36,12 @@
             "param": {
                 "template": "Hanafuda/A/",
                 "roi": [
-                    250,
-                    171,
-                    775,
-                    160
+                    370,
+                    87,
+                    545,
+                    295
                 ],
-                "count": 10
+                "count": 6
             }
         },
         "action": {
@@ -51,12 +57,12 @@
             "param": {
                 "template": "Hanafuda/B/",
                 "roi": [
-                    250,
-                    171,
-                    775,
-                    160
+                    370,
+                    87,
+                    545,
+                    295
                 ],
-                "count": 10
+                "count": 9
             }
         },
         "action": {
@@ -72,12 +78,12 @@
             "param": {
                 "template": "Hanafuda/C/",
                 "roi": [
-                    250,
-                    171,
-                    775,
-                    160
+                    370,
+                    87,
+                    545,
+                    295
                 ],
-                "count": 10
+                "count": 7
             }
         },
         "action": {
@@ -93,12 +99,12 @@
             "param": {
                 "template": "Hanafuda/D/",
                 "roi": [
-                    250,
-                    171,
-                    775,
-                    160
+                    370,
+                    87,
+                    545,
+                    295
                 ],
-                "count": 10
+                "count": 9
             }
         },
         "action": {
@@ -114,12 +120,12 @@
             "param": {
                 "template": "Hanafuda/E/",
                 "roi": [
-                    250,
-                    171,
-                    775,
-                    160
+                    370,
+                    87,
+                    545,
+                    295
                 ],
-                "count": 10
+                "count": 9
             }
         },
         "action": {
@@ -135,12 +141,12 @@
             "param": {
                 "template": "Hanafuda/K/",
                 "roi": [
-                    250,
-                    171,
-                    775,
-                    160
+                    370,
+                    87,
+                    545,
+                    295
                 ],
-                "count": 10
+                "count": 9
             }
         },
         "action": {
@@ -150,18 +156,144 @@
             "ConfirmHanafuda"
         ]
     },
+    "AgariKoikoi": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "Hanafuda/koikoi.png",
+                "roi": [
+                    370,
+                    87,
+                    545,
+                    295
+                ]
+            }
+        },
+        "action": {
+            "type": "Click"
+        },
+        "next": [
+            "ConfirmAgarikoikoi"
+        ]
+    },
     "ConfirmHanafuda": {
         "recognition": "OCR",
         "expected": [
             "确定"
         ],
         "roi": [
-            250,
-            171,
-            775,
-            160
+            370,
+            87,
+            545,
+            295
         ],
-        "action": "Click"
+        "action": "Click",
+        "next": [
+            "BattleEnd"
+        ],
+        "timeout": -1
+    },
+    "ConfirmAgarikoikoi": {
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
+        "roi": [
+            370,
+            87,
+            545,
+            295
+        ],
+        "action": "Click",
+        "next": [
+            "CheckRound"
+        ],
+        "on_error": [
+            "ChooseHanafudaInit"
+        ],
+        "timeout": 1000
+    },
+    "CheckRound": {
+        "recognition": "OCR",
+        "expected": [
+            "0"
+        ],
+        "roi": [
+            64,
+            35,
+            80,
+            33
+        ],
+        "next": [
+            "BattleEnd"
+        ],
+        "timeout": -1
+    },
+    "BattleEnd": {
+        "pre_wait_freezes": 3000,
+        "recognition": "OCR",
+        "expected": [
+            "战斗结果"
+        ],
+        "roi": [
+            531,
+            3,
+            558,
+            377
+        ],
+        "action": "Click",
+        "next": [
+            "GemScene"
+        ]
+    },
+    "GemScene": {
+        "recognition": "OCR",
+        "expected": [
+            "击败敌人"
+        ],
+        "roi": [
+            281,
+            251,
+            618,
+            211
+        ],
+        "action": "Click",
+        "next": [
+            "HanafudaCalc"
+        ]
+    },
+    "HanafudaCalc": {
+        "pre_wait_freezes": 2000,
+        "recognition": "OCR",
+        "expected": [
+            "花札"
+        ],
+        "roi": [
+            376,
+            12,
+            496,
+            255
+        ],
+        "action": "Click",
+        "next": [
+            "ContinueScene"
+        ]
+    },
+    "ContinueScene": {
+        "recognition": "OCR",
+        "expected": [
+            "行军"
+        ],
+        "roi": [
+            945,
+            369,
+            330,
+            336
+        ],
+        "action": "Click",
+        "next": [
+            "ChooseHanafudaInit"
+        ]
     },
     "OcrTask": {}
 }
