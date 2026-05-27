@@ -116,6 +116,13 @@
         "post_wait_freezes": 1000,
         "timeout": 10000,
         "on_error": [
+            "ChooseHanafudaInitEnd"
+        ]
+    },
+    "ChooseHanafudaInitEnd": {
+        "recognition": "DirectHit",
+        "timeout": -1,
+        "next": [
             "BattleEnd"
         ]
     },
