@@ -189,7 +189,8 @@ jobs:
         with:
           files: assets/*
           tag_name: ${{ needs.meta.outputs.tag }}
-          body: ${{ needs.changelog.outputs.release_body }}
+          # body: ${{ needs.changelog.outputs.release_body }}
+          body: "testtesttesttest"
           draft: false
           prerelease: ${{ needs.meta.outputs.is_prerelease == 'true' }}
 
