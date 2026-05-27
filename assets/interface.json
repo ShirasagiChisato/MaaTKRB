@@ -61,34 +61,45 @@
     "task": [
         {
             "name": "花札启动",
-            "entry": "HanafudaStart"
+            "label": "花札启动",
+            "entry": "HanafudaStart",
+            "description": "进入花札界面后开启此任务才可生效",
+            "option": [
+                "运行次数"
+            ]
         },
         {
             "name": "选择花札",
             "entry": "ChooseHanafudaInit"
+        },
+        {
+            "name": "测试",
+            "entry": "TestTask"
+        },
+        {
+            "name": "Black",
+            "entry": "GemScene"
         }
     ],
     "option": {
-        "任务选项1": {
-            "type": "select",
-            "cases": [
+        "运行次数": {
+            "type": "input",
+            "label": "运行次数",
+            "description": "输入运行次数",
+            "inputs": [
                 {
-                    "name": "文本1",
-                    "pipeline_override": {
-                        "OcrTask": {
-                            "text": "文本1"
-                        }
-                    }
-                },
-                {
-                    "name": "文本2",
-                    "pipeline_override": {
-                        "OcrTask": {
-                            "text": "文本2"
-                        }
-                    }
+                    "name": "数量",
+                    "description": "运行次数，用阿拉伯数字表示",
+                    "default": "6",
+                    "pipeline_type": "int"
+                    // "verify": "^\\d+$"
                 }
-            ]
+            ],
+            "pipeline_override": {
+                "EnterEventConfirm": {
+                    "max_hit": "{数量}"
+                }
+            }
         }
     }
 }

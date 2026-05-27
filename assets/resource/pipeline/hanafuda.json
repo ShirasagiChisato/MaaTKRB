@@ -3,26 +3,115 @@
         "recognition": {
             "type": "TemplateMatch",
             "param": {
-                "template": "benwan.png",
+                "template": [
+                    "Hanafuda/nandu4_1.png",
+                    "Hanafuda/nandu4_2.png"
+                ],
+                "order_by": "Score"
+            }
+        },
+        "action": "Click",
+        "timeout": 2000,
+        "on_error": [
+            "HanafudaStart"
+        ],
+        "next": [
+            "EnterEvent"
+        ]
+    },
+    "EnterEvent": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "Hanafuda/jikechuzhen.png",
                 "roi": [
-                    0,
-                    0,
-                    90,
-                    110
+                    1130,
+                    569,
+                    143,
+                    117
                 ]
             }
-        }
+        },
+        "action": "Click",
+        "next": [
+            "PassRefreshEnter",
+            "EnterEventConfirm"
+        ]
+    },
+    "PassRefreshEnter": {
+        "recognition": "OCR",
+        "expected": [
+            "补充"
+        ],
+        "roi": [
+            394,
+            434,
+            201,
+            68
+        ],
+        "action": "Click",
+        "next": [
+            "PassRefresh"
+        ]
+    },
+    "PassRefresh": {
+        "recognition": "OCR",
+        "expected": [
+            "全部恢复"
+        ],
+        "roi": [
+            307,
+            519,
+            662,
+            82
+        ],
+        "action": "Click",
+        "next": [
+            "PassRefreshConfirm"
+        ]
+    },
+    "PassRefreshConfirm": {
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
+        "roi": [
+            531,
+            431,
+            213,
+            70
+        ],
+        "action": "Click",
+        "next": [
+            "EnterEvent"
+        ]
+    },
+    "EnterEventConfirm": {
+        "recognition": "OCR",
+        "expected": [
+            "确定"
+        ],
+        "roi": [
+            524,
+            556,
+            228,
+            91
+        ],
+        "action": "Click",
+        "next": [
+            "ChooseHanafudaInit"
+        ]
     },
     "ChooseHanafudaInit": {
         "recognition": "DirectHit",
         "next": [
+            "AgariKoikoi",
             "ChooseHanafudaA",
             "ChooseHanafudaB",
             "ChooseHanafudaC",
             "ChooseHanafudaD",
             "ChooseHanafudaE",
-            "ChooseHanafudaK",
-            "AgariKoikoi"
+            "ChooseHanafudaK"
         ],
         "post_wait_freezes": 1000,
         "timeout": 10000,
@@ -47,6 +136,10 @@
         "action": {
             "type": "Click"
         },
+        "timeout": 5000,
+        "on_error": [
+            "ChooseHanafudaInit"
+        ],
         "next": [
             "ConfirmHanafuda"
         ]
@@ -68,6 +161,10 @@
         "action": {
             "type": "Click"
         },
+        "timeout": 5000,
+        "on_error": [
+            "ChooseHanafudaInit"
+        ],
         "next": [
             "ConfirmHanafuda"
         ]
@@ -89,6 +186,10 @@
         "action": {
             "type": "Click"
         },
+        "timeout": 5000,
+        "on_error": [
+            "ChooseHanafudaInit"
+        ],
         "next": [
             "ConfirmHanafuda"
         ]
@@ -110,6 +211,10 @@
         "action": {
             "type": "Click"
         },
+        "timeout": 5000,
+        "on_error": [
+            "ChooseHanafudaInit"
+        ],
         "next": [
             "ConfirmHanafuda"
         ]
@@ -131,6 +236,10 @@
         "action": {
             "type": "Click"
         },
+        "timeout": 5000,
+        "on_error": [
+            "ChooseHanafudaInit"
+        ],
         "next": [
             "ConfirmHanafuda"
         ]
@@ -152,6 +261,10 @@
         "action": {
             "type": "Click"
         },
+        "timeout": 5000,
+        "on_error": [
+            "ChooseHanafudaInit"
+        ],
         "next": [
             "ConfirmHanafuda"
         ]
@@ -172,6 +285,9 @@
         "action": {
             "type": "Click"
         },
+        "on_error": [
+            "ChooseHanafudaInit"
+        ],
         "next": [
             "ConfirmAgarikoikoi"
         ]
@@ -230,7 +346,7 @@
         "timeout": -1
     },
     "BattleEnd": {
-        "pre_wait_freezes": 3000,
+        "pre_wait_freezes": 5000,
         "recognition": "OCR",
         "expected": [
             "战斗结果"
@@ -240,6 +356,23 @@
             3,
             558,
             377
+        ],
+        "action": "Click",
+        "next": [
+            "InstGet",
+            "GemScene"
+        ]
+    },
+    "InstGet": {
+        "recognition": "OCR",
+        "expected": [
+            "获得"
+        ],
+        "roi": [
+            281,
+            251,
+            279,
+            211
         ],
         "action": "Click",
         "next": [
@@ -259,7 +392,75 @@
         ],
         "action": "Click",
         "next": [
+            "ChooseBlack1",
             "HanafudaCalc"
+        ]
+    },
+    "ChooseBlack1": {
+        "recognition": "OCR",
+        "expected": [
+            "胜利报酬"
+        ],
+        "roi": [
+            450,
+            47,
+            388,
+            91
+        ],
+        "action": "Click",
+        "target": [
+            200,
+            250
+        ],
+        "next": [
+            "ChooseBlack2"
+        ]
+    },
+    "ChooseBlack2": {
+        "recognition": "DirectHit",
+        "action": "Click",
+        "target": [
+            360,
+            250
+        ],
+        "next": [
+            "ChooseBlack3"
+        ]
+    },
+    "ChooseBlack3": {
+        "recognition": "DirectHit",
+        "action": "Click",
+        "target": [
+            540,
+            250
+        ],
+        "next": [
+            "ChooseBlack4"
+        ]
+    },
+    "ChooseBlack4": {
+        "recognition": "DirectHit",
+        "action": "Click",
+        "target": [
+            710,
+            250
+        ],
+        "next": [
+            "ChooseBlack5"
+        ]
+    },
+    "ChooseBlack5": {
+        "recognition": "DirectHit",
+        "action": "Click",
+        "target": [
+            890,
+            250
+        ],
+        "next": [
+            "HanafudaCalc"
+        ],
+        "on_error": [
+            "EventEnd"
         ]
     },
     "HanafudaCalc": {
@@ -276,7 +477,28 @@
         ],
         "action": "Click",
         "next": [
-            "ContinueScene"
+            "ContinueScene",
+            "EventEnd"
+        ]
+    },
+    "EventEnd": {
+        "recognition": "OCR",
+        "expected": [
+            "调查完了"
+        ],
+        "roi": [
+            281,
+            251,
+            685,
+            211
+        ],
+        "action": "Click",
+        "timeout": 3000,
+        "next": [
+            "HanafudaStart"
+        ],
+        "on_error": [
+            "[JumpBack]ClickSkip"
         ]
     },
     "ContinueScene": {
@@ -295,5 +517,22 @@
             "ChooseHanafudaInit"
         ]
     },
-    "OcrTask": {}
+    "OcrTask": {},
+    "TestTask": {
+        "recognition": "DirectHit",
+        "repeat": 6,
+        "action": "Click",
+        "target": [
+            570,
+            150
+        ]
+    },
+    "ClickSkip": {
+        "recognition": "DirectHit",
+        "action": "Click",
+        "target": [
+            861,
+            458
+        ]
+    }
 }

@@ -11,7 +11,6 @@ class MyCustomAction(CustomAction):
         context: Context,
         argv: CustomAction.RunArg,
     ) -> bool:
-
-        print("my_action_111 is running!")
+        # context.run_action_direct(action_type="Click",)
 
         return True
